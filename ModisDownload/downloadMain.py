@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 import requests
 from tqdm import tqdm
+from multiprocessing import Process
 
 
 class DownLoadThread:
@@ -206,11 +207,30 @@ def log_check(file_dict: dict, thread_num: int, save_dir: str, url: str, token: 
         return False
     else:
         print("总共有", all, "个文件，下载完成", all - len(filename_list), "个")
-        threading_download(filename_list,save_list, url, token)
+        MutiProcessMain(filename_list,save_list, url, token,thread_num)
         return True
 
 
-def download_main(save_dir: str, token: str, csv_path: str, thread_num=20, url="https://ladsweb.modaps.eosdis.nasa.gov",
+def MutiProcessMain(filename_list,save_list, url, token ,MutiNum=4):
+    number=len(filename_list)
+    if number<=MutiNum:
+        threading_download(filename_list,save_list, url, token)
+    else:
+        pList=[]
+        number=number//MutiNum
+        for i in range(MutiNum):
+            if i==MutiNum-1:
+                p=Process(target=threading_download,args=(filename_list[i*number:],save_list[i*number:], url, token))
+            else:
+                p=Process(target=threading_download,args=(filename_list[i*number:(i+1)*number],save_list[i*number:], url, token))
+            p.start()
+            pList.append(p)
+        for p in pList:
+            p.join()
+        return
+
+
+def download_main(save_dir: str, token: str, csv_path: str, thread_num=5, url="https://ladsweb.modaps.eosdis.nasa.gov",
                   max_try=10):
     """
     # 下载主函数

@@ -1,0 +1,28 @@
+Metadata-Version: 1.2
+Name: ModisDownload
+Version: 1.2.2
+Summary: help download modis files with token and muti threading processing
+Home-page: https://github.com/qxcnwu
+Author: qxcnwu
+Author-email: qxcnwu@gmail.com
+Maintainer: qxcnwu
+Maintainer-email: qxcnwu@gmail.com
+License: MIT License
+Description: ## ModisDownload
+        help ours down load from base url https://ladsweb.modaps.eosdis.nasa.gov/
+        when i use this packages , our bandwidth work in deadline
+        with the first version we can use this download all modis file with any time in any area
+        use like this
+        ```python
+        reload()
+        g=getHtml("your token")
+        g.download_main("production name","time,time1..time2","area or x1y1,x1y1","download dir")
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.4
