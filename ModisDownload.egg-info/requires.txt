@@ -1,6 +1,0 @@
-tqdm
-numpy
-pandas
-retry
-multitasking
-requests
