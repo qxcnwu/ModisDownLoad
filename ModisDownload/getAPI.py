@@ -122,7 +122,7 @@ class HTTPF:
         pass
 
     def creat_data_dir(self):
-        create_path = os.path.join(os.path.dirname(__file__), "temp")
+        create_path = os.path.dirname(__file__)+"/temp"
         if os.path.exists(create_path):
             pass
         else:
@@ -142,8 +142,8 @@ class sensor(HTTPF):
         self.headers = {
             "User-Agent": self.get_userAgent()
         }
-        self.jsonpath = os.path.join(os.path.dirname(__file__), "temp/sensor.json")
-        self.csv_path = os.path.join(os.path.dirname(__file__), "temp/sensor.csv")
+        self.jsonpath = os.path.dirname(__file__)+"/temp/sensor.json"
+        self.csv_path = os.path.dirname(__file__)+"/temp/sensor.csv"
         self.pro_dict = {}
 
     def visit(self):
@@ -195,8 +195,8 @@ class geo(HTTPF):
         super().__init__()
         self.dict_ans = {}
         self.url = "https://ladsweb.modaps.eosdis.nasa.gov/search/geodata/world_countries.geojson"
-        self.country_path = os.path.join(os.path.dirname(__file__), "temp/country.json")
-        self.json_path = os.path.join(os.path.dirname(__file__), "temp/geo.json")
+        self.country_path = os.path.dirname(__file__)+"/temp/country.json"
+        self.json_path = os.path.dirname(__file__)+"/temp/geo.json"
         self.answer = {
 
         }
@@ -287,7 +287,7 @@ class search(HTTPF):
         self.searchdata = searchdata
         self.url_List = []
         self.answer = []
-        self.file_name_path = os.path.join(os.path.dirname(__file__), "temp/" + str(time.time()) + ".csv")
+        self.file_name_path = os.path.dirname(__file__)+"/temp/" + str(time.time()) + ".csv"
         self.downList = []
         self.canuse=False
 

@@ -1,10 +1,12 @@
 import os
 from multiprocessing import Process
+import pandas as pd
+import numpy as np
+import json
 
 from ModisDownload.WatchDir import watch_dir_size
 from ModisDownload.downloadMain import download_main
 from ModisDownload.getAPI import sensor, search, searchData, geo
-
 
 class getHtml:
     def __init__(self, token):
@@ -58,6 +60,8 @@ class getHtml:
         :param download_dir:
         :return:
         """
+        if not os.path.exists(download_dir):
+            os.makedirs(download_dir)
         sea = self.get_search(sensor_name, dates,area.lower())
         if not sea.canuse:
             print("未查询到可下载数据")
@@ -68,7 +72,7 @@ class getHtml:
         return
 
 def reload():
-    origin=os.path.join(__file__,"/temp")
+    origin=os.path.dirname(__file__)+"/temp"
     for file in os.listdir(origin):
         try:
             os.remove(os.path.join(origin,file))
@@ -76,3 +80,20 @@ def reload():
             pass
     print("重新初始化完成")
     return
+
+def search_p():
+    getHtml("")
+    origin = os.path.dirname(__file__) + "/temp/sensor.csv"
+    data=np.array(pd.read_csv(origin,header=None,index_col=False))
+    for idx,i in enumerate(data):
+        print(idx," ",i)
+    return data
+
+def search_area():
+    getHtml("")
+    origin = os.path.dirname(__file__) + "/temp/country.json"
+    with open(origin,"r") as fd:
+        dicts=json.load(fd)
+    for key,value in dicts.items():
+        print(key,":",value)
+    return dicts

@@ -53,9 +53,7 @@ class DownLoadFile:
         return
 
     def __str__(self):
-        return self.name + "," + self.size + "," + self.fileURL + "," + self.GRingLongitude1 + "," \
-               + self.GRingLongitude2 + "," + self.GRingLongitude3 + "," + self.GRingLongitude4 + \
-               "," + self.GRingLatitude1 + ","+self.GRingLatitude2 + ","+self.GRingLatitude3 + ","+self.GRingLatitude4
+        return self.name + "," + self.size + "," + self.fileURL
 
 class Country:
     def __init__(self,contry_dict:dict):
