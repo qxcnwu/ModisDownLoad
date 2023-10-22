@@ -6,11 +6,5 @@ hello git
 hello git
 hello git
 hello git
-hello git
-hello git
-hello git
-hello git
-hello git
-hello git
-hello git
-hello git
+
+print(asdadsada)
